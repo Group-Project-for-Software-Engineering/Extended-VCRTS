@@ -1,0 +1,60 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  height: 60px;
+  color: white;
+}
+
+.navbar-admin {
+  background-color: rgb(128, 0, 32);
+}
+
+.navbar-owner {
+  background-color: rgb(46, 125, 50);
+}
+
+.navbar-client {
+  background-color: rgb(33, 150, 243);
+}
+
+.navbar-left h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.navbar-center {
+  flex: 1;
+  text-align: center;
+}
+
+.welcome {
+  font-size: 18px;
+}
+
+.navbar-right {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-btn {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background-color: rgba(255,255,255,0.15);
+  transition: 0.2s;
+}
+
+.nav-btn:hover {
+  background-color: rgba(255,255,255,0.3);
+}
+
+.logout {
+  background-color: rgba(255, 80, 80, 0.6);
+}
+
+.logout:hover {
+  background-color: rgba(255, 80, 80, 0.9);
+}
