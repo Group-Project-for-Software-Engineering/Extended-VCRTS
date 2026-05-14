@@ -1,0 +1,39 @@
+.submit-container {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+
+.submit-left {
+  width: 40%;
+  background-color: rgb(25, 118, 210);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit-left h1 {
+  font-size: 48px;
+}
+
+.submit-right {
+  width: 60%;
+  background-color: rgb(242, 245, 249);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.submit-right input {
+  padding: 12px;
+  font-size: 16px;
+}
+
+.btn-primary {
+  padding: 12px;
+  background-color: rgb(77, 163, 255);
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
