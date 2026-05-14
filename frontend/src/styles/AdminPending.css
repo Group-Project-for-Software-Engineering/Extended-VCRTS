@@ -1,0 +1,15 @@
+.pending-container {
+  padding: 20px;
+}
+
+.pending-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.pending-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
