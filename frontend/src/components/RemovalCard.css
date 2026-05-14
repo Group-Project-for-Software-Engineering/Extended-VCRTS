@@ -1,0 +1,25 @@
+.removal-card {
+  width: 340px;
+  background: rgb(153, 204, 255);
+  border: 3px solid black;
+  padding: 16px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.removal-card p {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.remove-btn {
+  background: rgb(255, 51, 51);
+  padding: 10px 16px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+}
