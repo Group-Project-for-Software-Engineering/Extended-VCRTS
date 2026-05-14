@@ -1,6 +1,6 @@
 import { useState } from "react";
 import NavBar from "../components/NavBar";
-import "./OfferVehicle.css";
+import "../styles/OfferVehicle.css";
 
 export default function OfferVehicle({ user }) {
   const [form, setForm] = useState({

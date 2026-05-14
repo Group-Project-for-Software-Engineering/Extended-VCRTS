@@ -1,4 +1,4 @@
-import "./PendingCard.css";
+//import "../styles/PendingCard.css";
 
 export default function PendingCard({ req, reload }) {
   async function handleDecision(decision) {

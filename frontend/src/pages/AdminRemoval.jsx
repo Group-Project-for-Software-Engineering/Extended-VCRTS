@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import RemovalCard from "../components/RemovalCard";
-import "./AdminRemoval.css";
+import "../styles/AdminRemoval.css";
 
 export default function AdminRemoval({ user }) {
   const [items, setItems] = useState([]);

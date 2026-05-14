@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
-import "./Notifications.css";
+import "../styles/Notifications.css";
 
 export default function Notifications({ user }) {
   const [notifications, setNotifications] = useState([]);

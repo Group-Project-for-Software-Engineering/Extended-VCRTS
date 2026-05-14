@@ -1,4 +1,4 @@
-import "./VehicleCard.css";
+//import "../styles/VehicleCard.css";
 
 export default function VehicleCard({ vehicle }) {
   return (

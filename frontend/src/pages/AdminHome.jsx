@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import AdminUserCard from "../components/AdminUserCard";
-import "./AdminHome.css";
+import "../styles/AdminHome.css";
 
 export default function AdminHome({ user }) {
   const [users, setUsers] = useState([]);

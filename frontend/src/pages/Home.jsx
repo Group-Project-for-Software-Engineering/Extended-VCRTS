@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import VehicleCard from "../components/VehicleCard";
 import JobCard from "../components/JobCard";
 import NavBar from "../components/NavBar";
-import "./Home.css";
+import "../styles/Home.css";
 
 export default function Home({ user }) {
   const [vehicles, setVehicles] = useState([]);

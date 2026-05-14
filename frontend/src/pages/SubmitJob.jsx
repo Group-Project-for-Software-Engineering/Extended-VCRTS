@@ -1,6 +1,6 @@
 import { useState } from "react";
 import NavBar from "../components/NavBar";
-import "./SubmitJob.css";
+import "../styles/SubmitJob.css";
 
 export default function SubmitJob({ user }) {
   const [form, setForm] = useState({

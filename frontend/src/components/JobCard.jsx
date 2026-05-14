@@ -1,4 +1,4 @@
-import "./JobCard.css";
+//import "../styles/JobCard.css";
 
 export default function JobCard({ job }) {
   return (

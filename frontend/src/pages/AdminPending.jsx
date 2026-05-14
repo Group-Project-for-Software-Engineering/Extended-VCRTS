@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import PendingCard from "../components/PendingCard";
-import "./AdminPending.css";
+import "../styles/AdminPending.css";
 
 export default function AdminPending({ user }) {
   const [pending, setPending] = useState([]);
