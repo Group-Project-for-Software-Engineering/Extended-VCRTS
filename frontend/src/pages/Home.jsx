@@ -16,9 +16,6 @@ export default function Home({ user }) {
       const notifData = await notifRes.json();
       setNotifications(notifData);
 
-      // Show popups
-      notifData.forEach(n => alert(n.message));
-
       // Load vehicles or jobs depending on user type
       if (user.userType === "Owner") {
         const res = await fetch(`/api/owner/vehicles/${user.id}`);

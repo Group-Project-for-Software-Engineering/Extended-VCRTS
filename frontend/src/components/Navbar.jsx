@@ -44,6 +44,9 @@ export default function NavBar({ user }) {
         <Link to="/schedule" className="nav-btn">Schedule</Link>
         <Link to="/settings" className="nav-btn">Settings</Link>
 
+        {/* Shared */}
+        <Link to="/notifications">Notifications</Link>
+
         {/* Logout */}
         <Link to="/" className="nav-btn logout">Log Out</Link>
       </div>
