@@ -1,5 +1,5 @@
-import bcrypt from "bcrypt";
-import db from "../db.js";
+//import bcrypt from "bcrypt";
+import { db } from "../config/db.js";
 
 // REGISTER
 export async function registerUser(req, res) {
@@ -9,7 +9,8 @@ export async function registerUser(req, res) {
     return res.status(400).json({ message: "Missing fields" });
   }
 
-  const hashed = await bcrypt.hash(password, 10);
+  //const hashed = await bcrypt.hash(password, 10);
+  const hashed = password; // store plain text TEMPORARILY
 
   const sql = `
     INSERT INTO users (username, password, userType)
