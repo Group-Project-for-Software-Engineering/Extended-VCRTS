@@ -1,0 +1,31 @@
+.admin-home-container {
+  padding: 20px;
+}
+
+.admin-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  padding: 12px;
+  background-color: rgb(77, 163, 255);
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.admin-user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.completion-box {
+  background: #eef;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}

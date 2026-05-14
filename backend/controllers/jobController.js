@@ -1,4 +1,5 @@
 import { db } from "../config/db.js";
+import { adminCache } from "../cache/adminCache.js";
 
 export async function submitJob(req, res) {
   const { clientId, description, duration, deadline } = req.body;
@@ -24,4 +25,32 @@ export async function submitJob(req, res) {
     console.error(err);
     res.status(500).json({ message: "Server error submitting job" });
   }
+}
+
+export async function approveJob(req, res) {
+  const { jobId } = req.body;
+
+  await db.query("UPDATE pending_jobs SET status='approved' WHERE id=?", [jobId]);
+
+  // Insert into jobs table...
+
+  // Invalidate cache
+  adminCache.users = null;
+
+  res.json({ message: "Job approved" });
+}
+
+export async function rejectJob(req, res) {
+  const { jobId } = req.body;
+
+  // Remove from pending table
+  await db.query(
+    "DELETE FROM pending_jobs WHERE id=?",
+    [jobId]
+  );
+
+  // Invalidate admin cache
+  adminCache.users = null;
+
+  res.json({ message: "Job rejected" });
 }
