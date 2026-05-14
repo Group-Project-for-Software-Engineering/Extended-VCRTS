@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Notifications from "./pages/Notifications";
 import AdminPending from "./pages/AdminPending";
 import AdminRemoval from "./pages/AdminRemoval";
+import Register from "./pages/Register";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -26,6 +27,9 @@ export default function App() {
 
         {/* Login */}
         <Route path="/login" element={<Login setUser={setUser} />} />
+
+        {/*Register*/}
+        <Route path="/register" element={<Register />} />
 
         {/* Home (Client or Owner) */}
         <Route

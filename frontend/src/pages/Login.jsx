@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/Login.css";
+import { Link } from "react-router-dom";
 
 export default function Login() {
     
@@ -7,7 +8,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   async function handleLogin() {
-    const res = await fetch("/api/users/login", {
+    const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password })
@@ -30,7 +31,7 @@ export default function Login() {
     <div className="login-container">
       <div className="login-left">
         <h1>VCRTS</h1>
-        <a href="/register" className="btn-secondary">Create an Account</a>
+        <Link to="/register" className="btn-secondary">Create an Account</Link>
       </div>
 
       <div className="login-right">
