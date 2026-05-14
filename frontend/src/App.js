@@ -1,33 +1,76 @@
-import logo from './logo.svg';
-import { useEffect } from "react";
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { useState } from "react";
 
-function App() {
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Notifications from "./pages/Notifications";
+import AdminPending from "./pages/AdminPending";
+import AdminRemoval from "./pages/AdminRemoval";
 
-  useEffect(() => {
-    fetch("/api/hello")
-      .then(res => res.json())
-      .then(data => console.log(data));
-  }, []); //check backend call in console
+export default function App() {
+  const [user, setUser] = useState(null);
+
+  function ProtectedRoute({ children, roles }) {
+    if (!user) return <Navigate to="/login" replace />;
+
+    if (roles && !roles.includes(user.userType)) {
+      return <Navigate to="/home" replace />;
+    }
+
+    return children;
+  }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+
+        {/* Login */}
+        <Route path="/login" element={<Login setUser={setUser} />} />
+
+        {/* Home (Client or Owner) */}
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute roles={["Client", "Owner", "Admin"]}>
+              <Home user={user} />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Notifications */}
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute roles={["Client", "Owner", "Admin"]}>
+              <Notifications user={user} />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Admin: Pending */}
+        <Route
+          path="/admin/pending"
+          element={
+            <ProtectedRoute roles={["Admin"]}>
+              <AdminPending user={user} />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Admin: Removal */}
+        <Route
+          path="/admin/removal"
+          element={
+            <ProtectedRoute roles={["Admin"]}>
+              <AdminRemoval user={user} />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Default redirect */}
+        <Route path="*" element={<Navigate to="/login" replace />} />
+
+      </Routes>
+    </Router>
   );
 }
-
-export default App;
