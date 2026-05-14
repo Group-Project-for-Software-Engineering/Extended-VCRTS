@@ -1,0 +1,56 @@
+import { useEffect, useState } from "react";
+import VehicleCard from "../components/VehicleCard";
+import JobCard from "../components/JobCard";
+import NavBar from "../components/NavBar";
+import "./Home.css";
+
+export default function Home({ user }) {
+  const [vehicles, setVehicles] = useState([]);
+  const [jobs, setJobs] = useState([]);
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    async function loadData() {
+      // Load notifications
+      const notifRes = await fetch(`/api/users/notifications/${user.id}`);
+      const notifData = await notifRes.json();
+      setNotifications(notifData);
+
+      // Show popups
+      notifData.forEach(n => alert(n.message));
+
+      // Load vehicles or jobs depending on user type
+      if (user.userType === "Owner") {
+        const res = await fetch(`/api/owner/vehicles/${user.id}`);
+        const data = await res.json();
+        setVehicles(data);
+      } else {
+        const res = await fetch(`/api/client/jobs/${user.id}`);
+        const data = await res.json();
+        setJobs(data);
+      }
+    }
+
+    loadData();
+  }, [user]);
+
+  return (
+    <div className="home-container">
+      <NavBar user={user} />
+
+      <h1 className="home-title">
+        {user.userType === "Owner"
+          ? "Owner View: Your Vehicles"
+          : "Client View: Your Jobs"}
+      </h1>
+
+      <div className="home-list">
+        {user.userType === "Owner" &&
+          vehicles.map(v => <VehicleCard key={v.vehicleOwnerId} vehicle={v} />)}
+
+        {user.userType !== "Owner" &&
+          jobs.map(j => <JobCard key={j.jobClientId} job={j} />)}
+      </div>
+    </div>
+  );
+}
