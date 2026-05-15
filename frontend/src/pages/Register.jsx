@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/Register.css";
+import { Link } from "react-router-dom";
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -41,7 +42,7 @@ export default function Register() {
     <div className="register-container">
       <div className="register-left">
         <h1>VCRTS</h1>
-        <a href="/login" className="btn-secondary">Back to Login</a>
+        <Link to="/login" className="btn-secondary">Back to Login</Link>
       </div>
 
       <div className="register-right">

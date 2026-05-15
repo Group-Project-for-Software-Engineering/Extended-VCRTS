@@ -7,6 +7,7 @@ import Notifications from "./pages/Notifications";
 import AdminPending from "./pages/AdminPending";
 import AdminRemoval from "./pages/AdminRemoval";
 import Register from "./pages/Register";
+import AdminHome from "./pages/AdminHome";
 
 export default function App() {
   const [user, setUser] = useState(null);

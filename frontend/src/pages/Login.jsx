@@ -1,11 +1,14 @@
 import { useState } from "react";
 import "../styles/Login.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login({ setUser }) {
     
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+   const navigate = useNavigate(); 
 
   async function handleLogin() {
     const res = await fetch("/api/auth/login", {
@@ -16,15 +19,21 @@ export default function Login() {
 
     const data = await res.json();
 
+    console.log("LOGIN RESPONSE:", data); //remove later
+
+
     if (!res.ok) {
       alert(data.message);
       return;
     }
 
+    setUser(data); 
+
     // redirect based on user type
-    if (data.userType === "Owner") window.location.href = "/owner/home";
-    else if (data.userType === "Admin") window.location.href = "/admin/home";
-    else window.location.href = "/client/home";
+    // ROLE-BASED NAVIGATION
+    if (data.userType === "Owner") navigate("/home");
+    else if (data.userType === "Admin") navigate("/admin/home");
+    else navigate("/home");
   }
 
   return (
