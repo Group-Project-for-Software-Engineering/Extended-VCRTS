@@ -1,6 +1,8 @@
 .submit-container {
-  display: flex;
-  height: calc(100vh - 60px);
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  background: white;
 }
 
 .submit-left {
