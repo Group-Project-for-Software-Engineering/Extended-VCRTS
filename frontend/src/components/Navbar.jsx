@@ -22,7 +22,7 @@ export default function NavBar({ user }) {
           <Link to="/home" className="nav-btn">Home</Link>
         )}
 
-        {/* Admin-only buttons */}
+        {/* Admin-only */}
         {userType === "Admin" && (
           <>
             <Link to="/admin/pending" className="nav-btn">Pending</Link>
@@ -32,23 +32,19 @@ export default function NavBar({ user }) {
 
         {/* Owner-only */}
         {userType === "Owner" && (
-          <Link to="/owner/offer-vehicle" className="nav-btn">Offer Vehicle</Link>
+          <Link to="/offer-vehicle" className="nav-btn">Offer Vehicle</Link>
         )}
 
         {/* Client-only */}
         {userType === "Client" && (
-          <Link to="/client/submit-job" className="nav-btn">Submit Job</Link>
+          <Link to="/submit-job" className="nav-btn">Submit Job</Link>
         )}
 
         {/* Shared */}
-        <Link to="/schedule" className="nav-btn">Schedule</Link>
-        <Link to="/settings" className="nav-btn">Settings</Link>
-
-        {/* Shared */}
-        <Link to="/notifications">Notifications</Link>
+        <Link to="/notifications" className="nav-btn">Notifications</Link>
 
         {/* Logout */}
-        <Link to="/" className="nav-btn logout">Log Out</Link>
+        <Link to="/login" className="nav-btn logout">Log Out</Link>
       </div>
     </nav>
   );

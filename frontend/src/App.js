@@ -8,6 +8,8 @@ import AdminPending from "./pages/AdminPending";
 import AdminRemoval from "./pages/AdminRemoval";
 import Register from "./pages/Register";
 import AdminHome from "./pages/AdminHome";
+import OfferVehicle from "./pages/OfferVehicle";
+import SubmitJob from "./pages/SubmitJob";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -52,6 +54,17 @@ export default function App() {
           }
         />
 
+        {/* Admin Home */}
+        <Route
+          path="/admin/home"
+          element={
+            <ProtectedRoute roles={["Admin"]}>
+              <AdminHome user={user} />
+            </ProtectedRoute>
+          }
+        />
+
+
         {/* Admin: Pending */}
         <Route
           path="/admin/pending"
@@ -71,6 +84,25 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/offer-vehicle"
+          element={
+            <ProtectedRoute roles={["Owner"]}>
+              <OfferVehicle user={user} />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/submit-job"
+          element={
+            <ProtectedRoute roles={["Client"]}>
+              <SubmitJob user={user} />
+            </ProtectedRoute>
+          }
+        />
+
 
         {/* Default redirect */}
         <Route path="*" element={<Navigate to="/login" replace />} />
