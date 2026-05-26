@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function Login({ setUser }) {
-    
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-   const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   async function handleLogin() {
     const res = await fetch("/api/auth/login", {
@@ -27,7 +27,7 @@ export default function Login({ setUser }) {
       return;
     }
 
-    setUser(data); 
+    setUser(data);
 
     // redirect based on user type
     // ROLE-BASED NAVIGATION
@@ -38,14 +38,9 @@ export default function Login({ setUser }) {
 
   return (
     <div className="login-container">
-      <div className="login-left">
-        <h1>VCRTS</h1>
-        <Link to="/register" className="btn-secondary">Create an Account</Link>
-      </div>
-
-      <div className="login-right">
-        <h2>Sign In</h2>
-
+      <h1 id="login-title">VCRTS</h1>
+      <div className="login-register-container">
+        <h2 id="login-box">Sign In</h2>
         <input
           type="text"
           placeholder="Username"
@@ -63,7 +58,10 @@ export default function Login({ setUser }) {
         <button className="btn-primary" onClick={handleLogin}>
           Login
         </button>
+
+         <Link id = "register-link" to="/register" className="btn-secondary">Create an Account</Link>
       </div>
+     
     </div>
   );
 }
