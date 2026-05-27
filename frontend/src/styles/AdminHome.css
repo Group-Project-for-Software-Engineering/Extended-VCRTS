@@ -1,5 +1,5 @@
 .admin-home-container {
-  padding: 20px;
+  
 }
 
 .admin-title {
@@ -17,6 +17,9 @@
   margin-bottom: 20px;
 }
 
+button {
+  margin-left: 44%;
+}
 .admin-user-list {
   display: flex;
   flex-direction: column;
