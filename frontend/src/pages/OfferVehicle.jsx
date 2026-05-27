@@ -82,12 +82,10 @@ export default function OfferVehicle({ user }) {
   return (
     <div className="offer-container">
       <NavBar user={user} />
+      
+      <h1 id = "offer-title">Offer Vehicle</h1>
 
-      <div className="offer-left">
-        <h1>Offer Vehicle</h1>
-      </div>
-
-      <div className="offer-right">
+      <div className="offer-form">
         <h2>Enter Vehicle Information</h2>
 
         <input

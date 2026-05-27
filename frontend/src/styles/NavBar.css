@@ -3,7 +3,8 @@
   align-items: center;
   padding: 10px 20px;
   height: 60px;
-  color: white;
+  color: rgb(8, 0, 0);
+  margin: 0px;
 }
 
 .navbar-admin {
@@ -11,11 +12,11 @@
 }
 
 .navbar-owner {
-  background-color: rgb(46, 125, 50);
+  background-color: rgba(67, 255, 76, 0.396);
 }
 
 .navbar-client {
-  background-color: rgb(33, 150, 243);
+  background-color: rgb(56, 209, 251);
 }
 
 .navbar-left h1 {
@@ -38,17 +39,18 @@
 }
 
 .nav-btn {
-  color: white;
+  color: rgb(9, 1, 1);
   text-decoration: none;
   font-size: 16px;
   padding: 6px 12px;
   border-radius: 4px;
-  background-color: rgba(255,255,255,0.15);
+  background-color: rgba(249, 246, 246, 0.911);
   transition: 0.2s;
+  border: 1px solid black;
 }
 
 .nav-btn:hover {
-  background-color: rgba(255,255,255,0.3);
+  background-color: rgba(18, 198, 253, 0.3);
 }
 
 .logout {
