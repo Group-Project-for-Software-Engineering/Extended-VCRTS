@@ -58,12 +58,10 @@ export default function SubmitJob({ user }) {
   return (
     <div className="submit-container">
       <NavBar user={user} />
+      <h1 id = "submit-title">Submit Job</h1>
+      
 
-      <div className="submit-left">
-        <h1>Submit Job</h1>
-      </div>
-
-      <div className="submit-right">
+      <div className="submit-form">
         <h2>Enter Job Information</h2>
 
         <input

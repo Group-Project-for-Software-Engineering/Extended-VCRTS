@@ -5,32 +5,26 @@
   background: white;
 }
 
-.submit-left {
-  width: 40%;
-  background-color: rgb(25, 118, 210);
+#submit-title {
+  background-color: rgb(5, 26, 114);
+  margin-top: 0;
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 50px;
+  margin-bottom: 0;
 }
 
-.submit-left h1 {
-  font-size: 48px;
-}
-
-.submit-right {
-  width: 60%;
-  background-color: rgb(242, 245, 249);
-  padding: 40px;
+.submit-form {
+  background-color: antiquewhite;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  height: 665px;
+  margin-bottom: 0;
 }
 
-.submit-right input {
-  padding: 12px;
-  font-size: 16px;
-}
 
 .btn-primary {
   padding: 12px;
