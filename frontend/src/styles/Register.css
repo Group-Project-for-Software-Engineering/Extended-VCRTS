@@ -4,10 +4,19 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: #f0f8ff;
+  background: #68f67e;
+}
+
+#title {
+  font-size: 100px;
+  margin-bottom: 0px;
 }
 
 .register-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   width: 400px;
   background: rgb(153, 204, 255);
   border: 3px solid black;
@@ -62,4 +71,26 @@
 .register-footer a {
   color: #005fcc;
   text-decoration: none;
+}
+
+input {
+  width: 25vh;
+  text-align: center;
+}
+
+#user-type {
+  margin-top: 10px;
+  text-align: center;
+}
+
+#login-link{
+  text-decoration: none;
+  margin-bottom: 5px;
+  color: white;
+  margin-bottom: 0px;
+}
+
+#login-link:hover {
+  text-decoration: underline;
+  color: rgb(11, 0, 0);
 }

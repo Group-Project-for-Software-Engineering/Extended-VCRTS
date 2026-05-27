@@ -40,13 +40,9 @@ export default function Register() {
 
   return (
     <div className="register-container">
-      <div className="register-left">
-        <h1>VCRTS</h1>
-        <Link to="/login" className="btn-secondary">Back to Login</Link>
-      </div>
-
-      <div className="register-right">
-        <h2>Register</h2>
+      <h1 id = "title">VCRTS</h1>
+      <div className="register-box">
+        <h2 id = "register-title">Register</h2>
 
         <input
           type="text"
@@ -72,7 +68,7 @@ export default function Register() {
           onChange={e => update("confirmPassword", e.target.value)}
         />
 
-        <select onChange={e => update("userType", e.target.value)}>
+        <select id = "user-type" onChange={e => update("userType", e.target.value)}>
           <option value="">Register As...</option>
           <option value="Client">Client</option>
           <option value="Owner">Owner</option>
@@ -81,7 +77,11 @@ export default function Register() {
         <button className="btn-primary" onClick={handleRegister}>
           Create Account
         </button>
+
+        <Link id = "login-link" to="/login" className="btn-secondary">Back to Login</Link>
+
       </div>
+
     </div>
   );
 }
