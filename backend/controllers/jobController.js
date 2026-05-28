@@ -17,7 +17,7 @@ export async function submitJob(req, res) {
     await db.query(
       `INSERT INTO notifications (userId, message)
        VALUES (?, ?)`,
-      [1, `New job pending approval from client ${clientId}`]
+      [4, `New job pending approval from client ${clientId}`] //admin id = 4
     );
 
     res.json({ message: "Job submitted for approval" });

@@ -26,7 +26,7 @@ export async function submitVehicle(req, res) {
     await db.query(
       `INSERT INTO notifications (userId, message)
        VALUES (?, ?)`,
-      [1, `New vehicle pending approval from owner ${ownerId}`] // admin = userId 1
+      [4, `New vehicle pending approval from owner ${ownerId}`] // admin = userId 4
     );
 
     res.json({ message: "Vehicle submitted for approval" });

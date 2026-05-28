@@ -1,4 +1,4 @@
-//import "../styles/AdminUserCard.css";
+import "../styles/AdminUserCard.css";
 
 export default function AdminUserCard({ user }) {
   return (
