@@ -17,9 +17,6 @@
   margin-bottom: 20px;
 }
 
-button {
-  margin-left: 44%;
-}
 .admin-user-list {
   display: flex;
   flex-direction: column;
