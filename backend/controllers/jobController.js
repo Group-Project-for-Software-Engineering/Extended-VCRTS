@@ -1,11 +1,10 @@
 import { db } from "../config/db.js";
-import { adminCache } from "../cache/adminCache.js";
 
+// CLIENT SUBMITS A JOB → goes into pending_jobs
 export async function submitJob(req, res) {
   const { clientId, description, duration, deadline } = req.body;
 
   try {
-    // Insert into pending jobs
     await db.query(
       `INSERT INTO pending_jobs 
        (clientId, description, duration, deadline)
@@ -13,11 +12,11 @@ export async function submitJob(req, res) {
       [clientId, description, duration, deadline]
     );
 
-    // Notify admin
+    // Notify admin (adminId = 4)
     await db.query(
       `INSERT INTO notifications (userId, message)
        VALUES (?, ?)`,
-      [4, `New job pending approval from client ${clientId}`] //admin id = 4
+      [4, `New job pending approval from client ${clientId}`]
     );
 
     res.json({ message: "Job submitted for approval" });
@@ -27,39 +26,18 @@ export async function submitJob(req, res) {
   }
 }
 
-export async function approveJob(req, res) {
-  const { jobId } = req.body;
-
-  await db.query("UPDATE pending_jobs SET status='approved' WHERE id=?", [jobId]);
-
-  // Insert into jobs table...
-
-  // Invalidate cache
-  adminCache.users = null;
-
-  res.json({ message: "Job approved" });
-}
-
-export async function rejectJob(req, res) {
-  const { jobId } = req.body;
-
-  // Remove from pending table
-  await db.query(
-    "DELETE FROM pending_jobs WHERE id=?",
-    [jobId]
-  );
-
-  // Invalidate admin cache
-  adminCache.users = null;
-
-  res.json({ message: "Job rejected" });
-}
-
-export async function getJobsByOwner(req, res) {
+// CLIENT HOME PAGE → fetch approved jobs
+export async function getJobsByClient(req, res) {
   const { clientId } = req.params;
-  const [rows] = await db.query(
-    "SELECT * FROM jobs WHERE id=?",
-    [clientId]
-  );
-  res.json(rows);
+
+  try {
+    const [rows] = await db.query(
+      "SELECT * FROM jobs WHERE clientId=?",
+      [clientId]
+    );
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error loading jobs" });
+  }
 }

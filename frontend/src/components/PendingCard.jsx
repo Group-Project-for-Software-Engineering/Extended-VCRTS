@@ -1,8 +1,8 @@
-//import "../styles/PendingCard.css";
+import "../styles/PendingCard.css";
 
 export default function PendingCard({ req, reload }) {
   async function handleDecision(decision) {
-    await fetch(`/api/admin/pending/${decision}`, {
+    await fetch(`/api/admin/${decision}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id: req.id, type: req.type })

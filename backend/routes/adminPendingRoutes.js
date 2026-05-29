@@ -7,7 +7,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", getPendingRequests);
+router.get("/pending", getPendingRequests);
 router.post("/approve", approvePending);
 router.post("/reject", rejectPending);
 
