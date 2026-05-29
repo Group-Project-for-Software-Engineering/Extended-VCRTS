@@ -1,4 +1,4 @@
-import "../components/RemovalCard.css";
+import "../styles/RemovalCard.css";
 
 export default function RemovalCard({ item, reload }) {
   async function removeItem() {

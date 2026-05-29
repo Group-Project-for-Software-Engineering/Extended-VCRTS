@@ -6,7 +6,7 @@ import {
 
 const router = express.Router();
 
-router.get("/", getAllRemovableItems);
+router.get("/removal", getAllRemovableItems);
 router.post("/remove", removeItem);
 
 export default router;

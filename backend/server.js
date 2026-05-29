@@ -1,6 +1,3 @@
-import { db } from "./config/db.js";
-console.log("DB in server.js:", db);
-
 import express from "express";
 import cors from "cors";
 

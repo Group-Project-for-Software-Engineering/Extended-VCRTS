@@ -4,7 +4,7 @@ import { adminCache } from "../cache/adminCache.js";
 export async function getAllRemovableItems(req, res) {
   try {
     const [vehicles] = await db.query(`
-      SELECT id, ownerId AS userId, vin, make, model, plate, year, approxTime, dayRegistered,
+      SELECT id, ownerId AS userId, vin, make, model, plate, year, arrival, departure,
       'vehicle' AS type
       FROM vehicles
     `);
@@ -28,7 +28,8 @@ export async function getAllRemovableItems(req, res) {
           VIN: ${v.vin}<br>
           Plate: ${v.plate}<br>
           Year: ${v.year}<br>
-          Approx Time: ${v.approxTime}<br>
+          Arrival: ${v.arrival}<br>
+          Departure: ${v.departure}<br>
           Registered: ${v.dayRegistered}
         `
       })),
