@@ -1,7 +1,9 @@
 import express from "express";
-import { submitJob } from "../controllers/jobController.js";
+import { submitJob, getJobsByOwner } from "../controllers/jobController.js";
 
 const router = express.Router();
+
+router.get("/client/:clientId", getJobsByOwner);
 
 router.post("/submit", submitJob);
 

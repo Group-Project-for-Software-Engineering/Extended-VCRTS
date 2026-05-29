@@ -1,7 +1,9 @@
 import express from "express";
-import { submitVehicle } from "../controllers/vehicleController.js";
+import { submitVehicle, getVehiclesByOwner} from "../controllers/vehicleController.js";
 
 const router = express.Router();
+
+router.get("/owner/:ownerId", getVehiclesByOwner);
 
 router.post("/submit", submitVehicle);
 

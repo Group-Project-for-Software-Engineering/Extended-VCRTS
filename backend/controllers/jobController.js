@@ -54,3 +54,12 @@ export async function rejectJob(req, res) {
 
   res.json({ message: "Job rejected" });
 }
+
+export async function getJobsByOwner(req, res) {
+  const { clientId } = req.params;
+  const [rows] = await db.query(
+    "SELECT * FROM jobs WHERE id=?",
+    [clientId]
+  );
+  res.json(rows);
+}

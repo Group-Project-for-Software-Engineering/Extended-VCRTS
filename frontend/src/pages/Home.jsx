@@ -18,11 +18,11 @@ export default function Home({ user }) {
 
       // Load vehicles or jobs depending on user type
       if (user.userType === "Owner") {
-        const res = await fetch(`/api/owner/vehicles/${user.id}`);
+        const res = await fetch(`/api/vehicles/owner/${user.id}`)
         const data = await res.json();
         setVehicles(data);
       } else {
-        const res = await fetch(`/api/client/jobs/${user.id}`);
+        const res = await fetch(`/api/jobs/client/${user.id}`)
         const data = await res.json();
         setJobs(data);
       }
@@ -43,10 +43,10 @@ export default function Home({ user }) {
 
       <div className="home-list">
         {user.userType === "Owner" &&
-          vehicles.map(v => <VehicleCard key={v.vehicleOwnerId} vehicle={v} />)}
+          vehicles.map(v => <VehicleCard key={v.id} vehicle={v} />)}
 
         {user.userType !== "Owner" &&
-          jobs.map(j => <JobCard key={j.jobClientId} job={j} />)}
+          jobs.map(j => <JobCard key={j.id} job={j} />)}
       </div>
     </div>
   );

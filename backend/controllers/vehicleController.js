@@ -64,3 +64,12 @@ export async function rejectVehicle(req, res) {
 
   res.json({ message: "Vehicle rejected" });
 }
+
+export async function getVehiclesByOwner(req, res) {
+  const { ownerId } = req.params;
+  const [rows] = await db.query(
+    "SELECT * FROM vehicles WHERE ownerId=?",
+    [ownerId]
+  );
+  res.json(rows);
+}
