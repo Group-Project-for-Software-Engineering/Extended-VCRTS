@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import NavBar from "../components/NavBar";
 import "../styles/Notifications.css";
 
 export default function Notifications({ user }) {
   const [notifications, setNotifications] = useState([]);
 
-  async function loadNotifications() {
+  const loadNotifications = useCallback(async () => {
     const res = await fetch(`/api/notifications/${user.id}`);
     const data = await res.json();
     setNotifications(data);
-  }
+  }, [user.id]);
 
   async function clearAll() {
     await fetch(`/api/notifications/clear/${user.id}`, {
@@ -20,7 +20,7 @@ export default function Notifications({ user }) {
 
   useEffect(() => {
     loadNotifications();
-  }, []);
+  }, [loadNotifications]);
 
   return (
     <div className="notif-container">
@@ -28,9 +28,11 @@ export default function Notifications({ user }) {
 
       <h1 className="notif-title">Notifications</h1>
 
-      <button className="notif-clear-btn" onClick={clearAll}>
-        Clear All
-      </button>
+      <div id="clear-button">
+        <button className="notif-clear-btn" onClick={clearAll}>
+          Clear All
+        </button>
+      </div>
 
       <div className="notif-list">
         {notifications.map(n => (

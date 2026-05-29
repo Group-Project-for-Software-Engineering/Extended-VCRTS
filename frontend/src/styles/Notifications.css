@@ -1,4 +1,14 @@
 .notif-container {
+  background-color: aliceblue;
+}
+
+#clear-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.notif-clear-btn {
+
 }
 
 .notif-title {
