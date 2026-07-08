@@ -28,10 +28,12 @@ export default function AdminHome({ user }) {
       <NavBar user={user} />
 
       <h1 className="admin-title">Admin View: All Users</h1>
-
-      <button className="btn-primary" onClick={calculateCompletionTimes}>
-        Calculate Completion Times
-      </button>
+      
+      <div className="center">
+        <button className="btn-primary" onClick={calculateCompletionTimes}>
+          Calculate Completion Times
+        </button>
+      </div>
 
       {completionTimes && (
         <div className="completion-box">
