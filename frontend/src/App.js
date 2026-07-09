@@ -24,6 +24,8 @@ export default function App() {
     return children;
   }
 
+  //adding all the pages to the app to traverse
+
   return (
     <Router>
       <Routes>

@@ -5,7 +5,9 @@ export function formatJob(row) {
     description: row.description,
     duration: row.duration,
     deadline: row.deadline,
-    timestamp: row.timestamp
+    timestamp: row.timestamp,
+    assignedVehicleId: row.assignedVehicleId,
+    status: row.status
   };
 }
 

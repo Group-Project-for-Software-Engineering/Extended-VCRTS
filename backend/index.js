@@ -1,3 +1,6 @@
+//initial test to make sure backend was working
+//can be removed
+
 const express = require("express");
 const cors = require("cors");
 

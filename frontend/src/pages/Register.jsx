@@ -21,6 +21,7 @@ export default function Register() {
       return;
     }
 
+    //calls the registerUser function in authController.js
     const res = await fetch("/api/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

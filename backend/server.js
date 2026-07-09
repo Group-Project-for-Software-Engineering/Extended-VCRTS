@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
 
-
+//importing different API routes to traverse the application
+//these can be found under the routes folder in the backend folder
 import userRoutes from "./routes/userRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import vehicleRoutes from "./routes/vehicleRoutes.js";

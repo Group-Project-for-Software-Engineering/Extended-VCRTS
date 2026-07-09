@@ -35,7 +35,7 @@ export async function getJobsByClient(req, res) {
       "SELECT * FROM jobs WHERE clientId=?",
       [clientId]
     );
-    res.json(rows);
+    res.json(rows.map(formatJob));
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Error loading jobs" });

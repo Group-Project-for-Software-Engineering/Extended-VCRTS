@@ -11,6 +11,8 @@ export default function Login({ setUser }) {
   const navigate = useNavigate();
 
   async function handleLogin() {
+
+    //callig the api to use the login() function is userController.js
     const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

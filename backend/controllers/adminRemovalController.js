@@ -38,12 +38,14 @@ export async function getAllRemovableItems(req, res) {
         type: "job",
         userId: j.userId,
         formatted: `
-          <strong>Job</strong><br>
-          User ID: ${j.userId}<br>
-          Description: ${j.description}<br>
-          Duration: ${j.duration} hrs<br>
-          Deadline: ${j.deadline}
-        `
+    <strong>Job</strong><br>
+    User ID: ${j.userId}<br>
+    Description: ${j.description}<br>
+    Duration: ${j.duration} hrs<br>
+    Deadline: ${j.deadline}<br>
+    Status: ${j.status}<br>
+    Assigned Vehicle: ${j.assignedVehicleId ?? "None"}
+  `
       }))
     ];
 

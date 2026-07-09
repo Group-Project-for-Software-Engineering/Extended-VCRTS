@@ -59,8 +59,8 @@ export async function approvePending(req, res) {
       const [[j]] = await db.query("SELECT * FROM pending_jobs WHERE id=?", [id]);
 
       await db.query(
-        `INSERT INTO jobs (clientId, description, duration, deadline)
-         VALUES (?, ?, ?, ?)`,
+        `INSERT INTO jobs (clientId, description, duration, deadline, status)
+        VALUES (?, ?, ?, ?, 'pending')`,
         [j.clientId, j.description, j.duration, j.deadline]
       );
 
