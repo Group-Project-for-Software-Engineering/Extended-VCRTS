@@ -51,5 +51,33 @@ async function assignJobs() {
     }
 }
 
-// Run every 3 seconds
-setInterval(assignJobs, 3000);
+async function detectFailures() {
+  const [rows] = await db.query(`
+    SELECT vehicleId, lastHeartbeat
+    FROM vehicle_heartbeats
+  `);
+
+  const now = Date.now();
+
+  for (let row of rows) {
+    const last = new Date(row.lastHeartbeat).getTime();
+    const diff = now - last;
+
+    if (diff > 5000) { // 5 seconds without heartbeat
+      console.log(`❌ Vehicle ${row.vehicleId} FAILED`);
+
+      // Reassign jobs from this vehicle
+      await db.query(
+        `UPDATE jobs
+         SET status = 'pending', assignedVehicleId = NULL
+         WHERE assignedVehicleId = ? AND status IN ('assigned', 'in_progress')`,
+        [row.vehicleId]
+      );
+    }
+  }
+}
+
+setInterval(() => {
+  assignJobs();
+  detectFailures();
+}, 3000);

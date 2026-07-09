@@ -27,6 +27,7 @@ export default function NavBar({ user }) {
           <>
             <Link to="/admin/pending" className="nav-btn">Pending</Link>
             <Link to="/admin/removal" className="nav-btn">Remove Job/Vehicle</Link>
+            <Link to="/dashboard" className="nav-btn">Dashboard</Link>
           </>
         )}
 

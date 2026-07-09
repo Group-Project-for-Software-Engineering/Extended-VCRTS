@@ -105,6 +105,8 @@ export default function App() {
           }
         />
 
+        <Route path="/dashboard" element={<Dashboard />} />
+
 
         {/* Default redirect */}
         <Route path="*" element={<Navigate to="/login" replace />} />

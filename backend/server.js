@@ -13,6 +13,7 @@ import clientRoutes from "./routes/clientRoutes.js";
 import homeRoutes from "./routes/homeRoutes.js";
 import jobRoutes from "./routes/jobRoutes.js";
 import notificationRoutes from "./routes/notificationRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
 
 
 const app = express();
@@ -30,6 +31,7 @@ app.use("/api/client", clientRoutes);
 app.use("/api/home", homeRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.use("/dashboard", dashboardRoutes);
 
 app.listen(5000, () => console.log("Server running on port 5000"));
 

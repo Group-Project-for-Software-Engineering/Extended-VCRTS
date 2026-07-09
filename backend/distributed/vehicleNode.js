@@ -31,6 +31,14 @@ function maybeFail() {
   }
 }
 
+async function sendHeartbeat() {
+  await db.query(
+    `REPLACE INTO vehicle_heartbeats (vehicleId, lastHeartbeat)
+     VALUES (?, NOW())`,
+    [vehicleId]
+  );
+}
+
 // Main loop: check for assigned jobs
 async function workLoop() {
   try {
@@ -74,3 +82,4 @@ async function workLoop() {
 }
 
 workLoop();
+setInterval(sendHeartbeat, 2000); // every 2 seconds
