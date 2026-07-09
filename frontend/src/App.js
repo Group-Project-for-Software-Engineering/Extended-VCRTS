@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import AdminHome from "./pages/AdminHome";
 import OfferVehicle from "./pages/OfferVehicle";
 import SubmitJob from "./pages/SubmitJob";
+import Dashboard from "./pages/Dashboard";
 
 export default function App() {
   const [user, setUser] = useState(null);

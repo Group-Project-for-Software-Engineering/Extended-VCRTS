@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 export default function Dashboard() {
   const [vehicles, setVehicles] = useState([]);
   const [jobs, setJobs] = useState([]);
 
   async function loadData() {
-    const v = await axios.get("/dashboard/vehicles");
-    const j = await axios.get("/dashboard/jobs");
+    const v = await fetch("/dashboard/vehicles");
+    const j = await fetch("/dashboard/jobs");
 
     setVehicles(v.data);
     setJobs(j.data);
