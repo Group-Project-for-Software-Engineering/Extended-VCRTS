@@ -6,13 +6,13 @@ export default function Notifications({ user }) {
   const [notifications, setNotifications] = useState([]);
 
   const loadNotifications = useCallback(async () => {
-    const res = await fetch(`/api/notifications/${user.id}`);
+    const res = await fetch(`/notifications/${user.id}`);
     const data = await res.json();
     setNotifications(data);
   }, [user.id]);
 
   async function clearAll() {
-    await fetch(`/api/notifications/clear/${user.id}`, {
+    await fetch(`/notifications/clear/${user.id}`, {
       method: "POST"
     });
     setNotifications([]);

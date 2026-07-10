@@ -9,7 +9,7 @@ export async function getNotifications(req, res) {
       [userId]
     );
 
-    res.json(rows.map(formatJob));
+    res.json(rows);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Error loading notifications" });
