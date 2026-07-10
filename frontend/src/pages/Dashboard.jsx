@@ -1,15 +1,26 @@
 import { useEffect, useState } from "react";
+import NavBar from "../components/NavBar";
 
-export default function Dashboard() {
+export default function Dashboard({user}) {
   const [vehicles, setVehicles] = useState([]);
   const [jobs, setJobs] = useState([]);
 
   async function loadData() {
-    const v = await fetch("/dashboard/vehicles");
-    const j = await fetch("/dashboard/jobs");
+    try {
+      const vRes = await fetch("/dashboard/vehicles");
+      const jRes = await fetch("/dashboard/jobs");
 
-    setVehicles(v.data);
-    setJobs(j.data);
+      // If backend returned HTML or error, this will throw
+      const vData = await vRes.json().catch(() => []);
+      const jData = await jRes.json().catch(() => []);
+
+      setVehicles(Array.isArray(vData) ? vData : []);
+      setJobs(Array.isArray(jData) ? jData : []);
+    } catch (err) {
+      console.error("Dashboard load error:", err);
+      setVehicles([]);
+      setJobs([]);
+    }
   }
 
   useEffect(() => {
@@ -20,6 +31,7 @@ export default function Dashboard() {
 
   return (
     <div style={{ padding: "20px" }}>
+      <NavBar user={user} />
       <h1>Distributed System Dashboard</h1>
 
       <h2>Vehicles</h2>
