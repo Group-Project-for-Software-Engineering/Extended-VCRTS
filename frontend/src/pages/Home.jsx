@@ -13,7 +13,8 @@ export default function Home({ user }) {
     async function loadData() {
 
       // Load notifications
-      const notifRes = await fetch(`/api/home/users/notifications/${user.id}`);
+      const notifRes = await fetch(`/api/home/users/notifications/${user.id}`); 
+      //home routes > home controller > get notifications function
       const notifData = await notifRes.json();
       setNotifications(notifData);
       
@@ -21,10 +22,12 @@ export default function Home({ user }) {
       // Load vehicles or jobs depending on user type
       if (user.userType === "Owner") {
         const res = await fetch(`/api/home/owner/vehicles/${user.id}`) 
+        //home routes > home controller > get vehicles function
         const data = await res.json();
         setVehicles(data);
       } else {
         const res = await fetch(`/api/home/client/jobs/${user.id}`) 
+        //home routes > home controller > get jobs function
         const data = await res.json();
         setJobs(data);
       }
