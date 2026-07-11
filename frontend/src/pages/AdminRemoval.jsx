@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import RemovalCard from "../components/RemovalCard";
 import "../styles/AdminRemoval.css";
+//------------------------------------------------------------------------------
+//Removal screen for the admin
 
 export default function AdminRemoval({ user }) {
+
   const [items, setItems] = useState([]);
 
+  //api call to get all jobs and vehicles in the system
   async function loadItems() {
     const res = await fetch("/api/admin/removal");
     const data = await res.json();
@@ -15,6 +19,7 @@ export default function AdminRemoval({ user }) {
   useEffect(() => {
     loadItems();
   }, []);
+  //-------------------------------------------
 
   return (
     <div className="removal-container">

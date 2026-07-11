@@ -1,6 +1,8 @@
 import { useState } from "react";
 import NavBar from "../components/NavBar";
 import "../styles/SubmitJob.css";
+//------------------------------------------------------------------------------
+//Submit job form for clients
 
 export default function SubmitJob({ user }) {
   const [form, setForm] = useState({
@@ -32,6 +34,7 @@ export default function SubmitJob({ user }) {
       return;
     }
 
+    //api call to update database with a new job pending
     const res = await fetch("/api/jobs/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -54,6 +57,7 @@ export default function SubmitJob({ user }) {
       deadline: ""
     });
   }
+  //---------------------------------------------
 
   return (
     <div className="submit-container">

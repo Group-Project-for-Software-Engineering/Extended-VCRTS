@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import "../styles/Dashboard.css"
+//------------------------------------------------------------------------------
+//Dashboard for the admin to gather information from running simulations
 
 export default function Dashboard({user}) {
+
   const [vehicles, setVehicles] = useState([]);
   const [jobs, setJobs] = useState([]);
 
+  //api call to get data about vehicles and jobs
   async function loadData() {
     try {
       const vRes = await fetch("/dashboard/vehicles");
@@ -29,6 +33,7 @@ export default function Dashboard({user}) {
     const interval = setInterval(loadData, 2000); // refresh every 2 seconds
     return () => clearInterval(interval);
   }, []);
+  //------------------------------------------------------
 
   return (
     <div id = "dashboard">

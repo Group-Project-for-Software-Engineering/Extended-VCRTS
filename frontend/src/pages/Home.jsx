@@ -3,8 +3,11 @@ import VehicleCard from "../components/VehicleCard";
 import JobCard from "../components/JobCard";
 import NavBar from "../components/NavBar";
 import "../styles/Home.css";
+//------------------------------------------------------------------------------
+//Home screen for all users except admin
 
 export default function Home({ user }) {
+
   const [vehicles, setVehicles] = useState([]);
   const [jobs, setJobs] = useState([]);
   //const [notifications, setNotifications] = useState([]);
@@ -19,7 +22,7 @@ export default function Home({ user }) {
       //setNotifications(notifData);
       
 
-      // Load vehicles or jobs depending on user type
+      // api call to load vehicles or jobs depending on user type
       if (user.userType === "Owner") {
         const res = await fetch(`/api/home/owner/vehicles/${user.id}`) 
         //home routes > home controller > get vehicles function
@@ -35,7 +38,8 @@ export default function Home({ user }) {
 
     loadData();
   }, [user]);
-
+  //-----------------------------------------------------
+  
   return (
     <div className="home-container">
       <NavBar user={user} />

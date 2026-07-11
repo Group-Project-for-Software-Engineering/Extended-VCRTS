@@ -1,17 +1,22 @@
 import { useEffect, useState, useCallback } from "react";
 import NavBar from "../components/NavBar";
 import "../styles/Notifications.css";
+//------------------------------------------------------------------------------
+//Notification screen for all users
 
 export default function Notifications({ user }) {
   const [notifications, setNotifications] = useState([]);
 
+  //api call to get notifications
   const loadNotifications = useCallback(async () => {
     const res = await fetch(`/api/notifications/get/${user.id}`);
     const data = await res.json();
     setNotifications(data);
     console.log(setNotifications)
   }, [user.id]);
+  //------------------------------------
 
+  //api call to clear notifications
   async function clearAll() {
     await fetch(`/api/notifications/clear/${user.id}`, {
       method: "POST"
@@ -22,7 +27,8 @@ export default function Notifications({ user }) {
   useEffect(() => {
     loadNotifications();
   }, [loadNotifications]);
-
+  //-------------------------------------
+  
   return (
     <div className="notif-container">
       <NavBar user={user} />

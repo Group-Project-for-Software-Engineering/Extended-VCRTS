@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
 import AdminUserCard from "../components/AdminUserCard";
 import "../styles/AdminHome.css";
+//------------------------------------------------------------------------------
+//Home page for the admin. Has cards for every user in the system with all valid information about them
 
 export default function AdminHome({ user }) {
+
   const [users, setUsers] = useState([]);
   const [completionTimes, setCompletionTimes] = useState(null);
 
+  //api call to get all the users in the system (excluding admins)
   useEffect(() => {
     async function loadUsers() {
       const res = await fetch("/api/admin/users");
@@ -15,13 +19,16 @@ export default function AdminHome({ user }) {
     }
     loadUsers();
   }, []);
+  //--------------------------------------
 
+  //api call to calculate the completion time for all the jobs in the system and display their respective completion times
   async function calculateCompletionTimes() {
     const res = await fetch("/api/admin/completion-times");
     const data = await res.json();
     setCompletionTimes(data);
     alert("Completion times calculated. Scroll down to view.");
   }
+  //----------------------------------------
 
   return (
     <div className="admin-home-container">

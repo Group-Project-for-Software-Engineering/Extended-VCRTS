@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "../styles/Register.css";
 import { Link } from "react-router-dom";
+//------------------------------------------------------------------------------
+//Register page
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -38,6 +40,7 @@ export default function Register() {
     alert("Account created!");
     window.location.href = "/login";
   }
+  //-----------------------------------
 
   return (
     <div className="register-container">

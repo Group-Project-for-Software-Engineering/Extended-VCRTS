@@ -2,6 +2,8 @@ import { useState } from "react";
 import "../styles/Login.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+//------------------------------------------------------------------------------
+//Login screen
 
 export default function Login({ setUser }) {
 
@@ -12,7 +14,7 @@ export default function Login({ setUser }) {
 
   async function handleLogin() {
 
-    //callig the api to use the login() function is userController.js
+    //callig the api to use the login() function in userController.js
     const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -37,6 +39,7 @@ export default function Login({ setUser }) {
     else if (data.userType === "Admin") navigate("/admin/home");
     else navigate("/home");
   }
+  //----------------------------------------------------
 
   return (
     <div className="login-container">

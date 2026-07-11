@@ -1,6 +1,8 @@
 import { useState } from "react";
 import NavBar from "../components/NavBar";
 import "../styles/OfferVehicle.css";
+//------------------------------------------------------------------------------
+//Offer vehicle submission form for owners
 
 export default function OfferVehicle({ user }) {
   const [form, setForm] = useState({
@@ -78,6 +80,7 @@ export default function OfferVehicle({ user }) {
       departure: ""
     });
   }
+  //---------------------------------------------
 
   return (
     <div className="offer-container">

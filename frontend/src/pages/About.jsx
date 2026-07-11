@@ -1,4 +1,6 @@
 import "../styles/About.css";
+//------------------------------------------------------------------------------
+//About page for the application (currently is not attached to application)
 
 export default function About() {
   return (
