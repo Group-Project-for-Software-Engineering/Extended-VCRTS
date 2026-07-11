@@ -1,0 +1,5 @@
+.vehicle-card {
+    height: fit-content;
+    border: 2px solid black;
+    margin-bottom: 0;
+}

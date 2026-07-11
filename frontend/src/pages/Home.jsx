@@ -7,16 +7,16 @@ import "../styles/Home.css";
 export default function Home({ user }) {
   const [vehicles, setVehicles] = useState([]);
   const [jobs, setJobs] = useState([]);
-  const [notifications, setNotifications] = useState([]);
+  //const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
     async function loadData() {
 
       // Load notifications
-      const notifRes = await fetch(`/api/home/users/notifications/${user.id}`); 
+      //const notifRes = await fetch(`/api/home/users/notifications/${user.id}`); 
       //home routes > home controller > get notifications function
-      const notifData = await notifRes.json();
-      setNotifications(notifData);
+      //const notifData = await notifRes.json();
+      //setNotifications(notifData);
       
 
       // Load vehicles or jobs depending on user type
