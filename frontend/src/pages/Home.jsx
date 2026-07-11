@@ -13,18 +13,18 @@ export default function Home({ user }) {
     async function loadData() {
 
       // Load notifications
-      const notifRes = await fetch(`/api/notifications/${user.id}`);
+      const notifRes = await fetch(`/api/home/users/notifications/${user.id}`);
       const notifData = await notifRes.json();
       setNotifications(notifData);
       
 
       // Load vehicles or jobs depending on user type
       if (user.userType === "Owner") {
-        const res = await fetch(`/api/vehicles/owner/${user.id}`)
+        const res = await fetch(`/api/home/owner/vehicles/${user.id}`) 
         const data = await res.json();
         setVehicles(data);
       } else {
-        const res = await fetch(`/api/jobs/client/${user.id}`)
+        const res = await fetch(`/api/home/client/jobs/${user.id}`) 
         const data = await res.json();
         setJobs(data);
       }

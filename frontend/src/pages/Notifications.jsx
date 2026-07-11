@@ -12,7 +12,7 @@ export default function Notifications({ user }) {
   }, [user.id]);
 
   async function clearAll() {
-    await fetch(`/notifications/clear/${user.id}`, {
+    await fetch(`/api/notifications/clear/${user.id}`, {
       method: "POST"
     });
     setNotifications([]);
