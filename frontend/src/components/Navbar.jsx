@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import "../styles/NavBar.css";
+//------------------------------------------------------------------------------
+//Creates a navbar at the top of every users screen 
+//Different navbar depending on user type
 
 export default function NavBar({ user }) {
   const userType = user.userType;

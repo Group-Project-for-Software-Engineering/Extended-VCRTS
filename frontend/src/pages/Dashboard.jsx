@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
+import "../styles/Dashboard.css"
 
 export default function Dashboard({user}) {
   const [vehicles, setVehicles] = useState([]);
@@ -30,7 +31,7 @@ export default function Dashboard({user}) {
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div id = "dashboard">
       <NavBar user={user} />
       <h1>Distributed System Dashboard</h1>
 

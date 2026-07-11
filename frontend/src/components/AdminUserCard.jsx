@@ -1,4 +1,6 @@
 import "../styles/AdminUserCard.css";
+//------------------------------------------------------------------------------
+//For every user in the database that is not an admin, display their information to the admins on the admin home page
 
 export default function AdminUserCard({ user }) {
   return (

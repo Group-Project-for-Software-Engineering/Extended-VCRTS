@@ -1,4 +1,6 @@
 import "../styles/JobCard.css";
+//------------------------------------------------------------------------------
+//For every client, make a card displaying all of their jobs with the relevant information
 
 export default function JobCard({ job }) {
   return (

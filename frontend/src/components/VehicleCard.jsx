@@ -1,4 +1,6 @@
 import "../styles/VehicleCard.css";
+//------------------------------------------------------------------------------
+//For every owner, make a card displaying all of their vehicles with the relevant information
 
 export default function VehicleCard({ vehicle }) {
   return (
