@@ -1,5 +1,8 @@
 import { db } from "../config/db.js";
+//------------------------------------------------------------------------------
+//Implementation of functions for notification page
 
+//get notifications for user
 export async function getNotifications(req, res) {
   try {
     const { userId } = req.params;
@@ -15,7 +18,9 @@ export async function getNotifications(req, res) {
     res.status(500).json({ message: "Error loading notifications" });
   }
 }
+//-------------------------------------------------------------
 
+//clear notifiations for user
 export async function clearNotifications(req, res) {
   try {
     const { userId } = req.params;

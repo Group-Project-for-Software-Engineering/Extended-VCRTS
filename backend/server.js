@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+//------------------------------------------------------------------------------
+//Implementation of the server to run the backend on 
 
 //importing different API routes to traverse the application
 //these can be found under the routes folder in the backend folder

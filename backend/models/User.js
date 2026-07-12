@@ -1,3 +1,5 @@
+//User object formatting and validation 
+
 export function formatUser(row) {
   return {
     id: row.id,
@@ -6,6 +8,7 @@ export function formatUser(row) {
     userType: row.userType
   };
 }
+//------------------------------------------------------------------------------
 
 export function validateUser(data) {
   if (!data.username || !data.password) {

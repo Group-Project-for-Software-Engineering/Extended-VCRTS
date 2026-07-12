@@ -1,4 +1,6 @@
 import mysql from "mysql2/promise";
+//------------------------------------------------------------------------------
+//Implementation of functions to automatically take a job in the system and attach it to a vehicle. (for simulations)
 
 const db = await mysql.createConnection({
     host: "localhost",
@@ -8,6 +10,7 @@ const db = await mysql.createConnection({
 });
 
 console.log("📡 Scheduler started");
+//-------------------------------------------------------------
 
 // Simple round-robin index
 let rrIndex = 0;
@@ -50,6 +53,7 @@ async function assignJobs() {
         console.error("Scheduler error:", err);
     }
 }
+//----------------------------------------------------------------
 
 async function detectFailures() {
   const [rows] = await db.query(`

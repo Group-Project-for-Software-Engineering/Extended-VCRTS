@@ -1,5 +1,7 @@
 import { db } from "../config/db.js";
 import { formatJob } from "../models/Job.js";
+//------------------------------------------------------------------------------
+//Implementation of dashboard functions
 
 export async function getVehicleStatus(req, res) {
   try {
@@ -30,6 +32,7 @@ export async function getVehicleStatus(req, res) {
     res.status(500).json({ message: "Error loading vehicle status" });
   }
 }
+//------------------------------------------------------------------
 
 export async function getAllJobs(req, res) {
   try {

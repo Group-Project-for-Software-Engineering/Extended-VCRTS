@@ -1,4 +1,6 @@
 import mysql from "mysql2/promise";
+//------------------------------------------------------------------------------
+//Connect to the database. At the moment it is a locally hosted database
 
 const pool = mysql.createPool({
   host: "localhost",

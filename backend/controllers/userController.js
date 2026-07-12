@@ -1,5 +1,8 @@
 import { db } from "../config/db.js";
+//------------------------------------------------------------------------------
+//Implementation for functions on login screen
 
+//login for a given user (authentication)
 export async function login(req, res) {
   const { username, password } = req.body;
 
@@ -16,7 +19,9 @@ export async function login(req, res) {
     userType: rows[0].userType
   });
 }
+//----------------------------------------------------
 
+//register a new account
 export async function register(req, res) {
   const { username, email, password, userType } = req.body;
 

@@ -1,5 +1,7 @@
 import express from "express";
 import { getClientJobs } from "../controllers/clientController.js";
+//------------------------------------------------------------------------------
+//API declaration for attachment to functions for client
 
 const router = express.Router();
 

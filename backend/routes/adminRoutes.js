@@ -3,6 +3,8 @@ import {
   getAllUsers,
   computeCompletionTimes
 } from "../controllers/adminController.js";
+//------------------------------------------------------------------------------
+//API declaration for attachment to functions for admin
 
 const router = express.Router();
 

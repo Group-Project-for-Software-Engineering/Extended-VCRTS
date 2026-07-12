@@ -1,7 +1,9 @@
 import bcrypt from "bcrypt";
 import { db } from "../config/db.js";
+//------------------------------------------------------------------------------
+//Implementation of registration page functions
 
-// REGISTER
+// Regsiter a new account for owner or client
 export async function registerUser(req, res) {
   try {
     const { username, password, userType } = req.body;
@@ -26,9 +28,9 @@ export async function registerUser(req, res) {
     res.status(500).json({ message: "Registration failed" });
   }
 }
+//--------------------------------------------------------
 
-
-// LOGIN
+// login a user into the application
 export async function loginUser(req, res) {
   try {
     const { username, password } = req.body;

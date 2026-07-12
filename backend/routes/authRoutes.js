@@ -1,5 +1,7 @@
 import express from "express";
 import { registerUser, loginUser } from "../controllers/authController.js";
+//------------------------------------------------------------------------------
+//API declaration for attachment to functions for login page 
 
 const router = express.Router();
 

@@ -1,6 +1,10 @@
 import { db } from "../config/db.js";
 import { formatJob } from "../models/Job.js";
+//------------------------------------------------------------------------------
+//API implementation of client functions
+//SEEMS TO BE REDUNDANT. TO BE REMOVED PENDING REVIEW
 
+//retrieve all jobs belonging to the current client logged in
 export async function getClientJobs(req, res) {
   try {
     const { clientId } = req.params;

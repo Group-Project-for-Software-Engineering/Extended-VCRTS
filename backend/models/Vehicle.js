@@ -1,3 +1,5 @@
+//Vehicle object formatting and validation
+
 export function formatVehicle(row) {
   return {
     id: row.id,
@@ -11,6 +13,7 @@ export function formatVehicle(row) {
     departure: row.departure
   };
 }
+//------------------------------------------------------------------------------
 
 export function validateVehicle(data) {
   if (!data.vin || !data.make || !data.model) {

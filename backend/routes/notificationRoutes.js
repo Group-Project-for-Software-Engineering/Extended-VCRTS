@@ -3,6 +3,8 @@ import {
   getNotifications,
   clearNotifications
 } from "../controllers/notificationController.js";
+//------------------------------------------------------------------------------
+//API declaration for attachment to functions for notifications
 
 const router = express.Router();
 

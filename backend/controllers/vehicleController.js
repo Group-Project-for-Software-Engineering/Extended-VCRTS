@@ -1,7 +1,9 @@
 import { db } from "../config/db.js";
 import { adminCache } from "../cache/adminCache.js";
+//------------------------------------------------------------------------------
+//Implementation of functions for the submit a vehicle page
 
-// SUBMIT VEHICLE (Owner submits → goes to pending_vehicles)
+// Owner submits → goes to pending_vehicles
 export async function submitVehicle(req, res) {
   const {
     ownerId,
@@ -35,6 +37,7 @@ export async function submitVehicle(req, res) {
     res.status(500).json({ message: "Server error submitting vehicle" });
   }
 }
+//-------------------------------------------------------------
 
 // GET VEHICLES FOR OWNER (Home page)
 export async function getVehiclesByOwner(req, res) {

@@ -4,6 +4,8 @@ import {
   getClientJobs,
   getNotifications
 } from "../controllers/homeController.js";
+//------------------------------------------------------------------------------
+//API declaration for attachment to functions for client/owner home page
 
 const router = express.Router();
 

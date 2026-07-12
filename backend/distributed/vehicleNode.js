@@ -1,4 +1,6 @@
 import mysql from "mysql2/promise";
+//------------------------------------------------------------------------------
+//Implementation of functions for vehicle simulation
 
 // Read vehicleId from command line
 const vehicleId = process.argv[2]?.split("=")[1];
@@ -6,6 +8,7 @@ if (!vehicleId) {
   console.error("Error: You must run with --vehicleId=X");
   process.exit(1);
 }
+//---------------------------------------------------
 
 // DB connection
 const db = await mysql.createConnection({
@@ -14,6 +17,7 @@ const db = await mysql.createConnection({
     password: "jc_cus200526",
     database: "vcrts2"
 });
+//------------------------------------------------------------------------------
 
 console.log(`Vehicle Node ${vehicleId} started`);
 
@@ -22,6 +26,7 @@ function simulateLatency() {
   const delay = Math.floor(Math.random() * 250) + 50;
   return new Promise(res => setTimeout(res, delay));
 }
+//------------------------------------------------------------------------------
 
 // Simulate random failure (5% chance)
 function maybeFail() {
@@ -30,6 +35,7 @@ function maybeFail() {
     process.exit(1);
   }
 }
+//------------------------------------------------------------------------------
 
 async function sendHeartbeat() {
   await db.query(
@@ -38,6 +44,7 @@ async function sendHeartbeat() {
     [vehicleId]
   );
 }
+//------------------------------------------------------------------------------
 
 // Main loop: check for assigned jobs
 async function workLoop() {

@@ -1,3 +1,5 @@
+//Job object implementation and formatting
+
 export function formatJob(row) {
   return {
     id: row.id,
@@ -10,6 +12,7 @@ export function formatJob(row) {
     status: row.status
   };
 }
+//-------------------------------------------------------
 
 export function validateJob(data) {
   if (!data.description || !data.duration || !data.deadline) {

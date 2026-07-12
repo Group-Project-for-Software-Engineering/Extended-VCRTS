@@ -1,6 +1,9 @@
 import { db } from "../config/db.js";
 import { adminCache } from "../cache/adminCache.js";
+//------------------------------------------------------------------------------
+//API implementation of functions for admin pending page
 
+//get all pending requests from the database
 export async function getPendingRequests(req, res) {
   try {
     const [vehicles] = await db.query("SELECT *, 'vehicle' AS type FROM pending_vehicles");
@@ -37,7 +40,10 @@ export async function getPendingRequests(req, res) {
     res.status(500).json({ message: "Error loading pending requests" });
   }
 }
+//-----------------------------------------------------
 
+//Approve a pending job of vehicle
+//Update database as needed
 export async function approvePending(req, res) {
   const { id, type } = req.body;
 
@@ -76,7 +82,10 @@ export async function approvePending(req, res) {
     res.status(500).json({ message: "Error approving request" });
   }
 }
+//---------------------------------------------------------------
 
+//Reject pending job or vehicle. 
+//Update database as needed
 export async function rejectPending(req, res) {
   const { id, type } = req.body;
 

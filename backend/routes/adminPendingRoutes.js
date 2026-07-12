@@ -4,6 +4,8 @@ import {
   approvePending,
   rejectPending
 } from "../controllers/adminPendingController.js";
+//------------------------------------------------------------------------------
+//API declaration for attachment to functions for admin pending page
 
 const router = express.Router();
 

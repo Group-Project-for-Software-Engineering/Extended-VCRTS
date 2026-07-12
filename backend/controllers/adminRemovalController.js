@@ -1,6 +1,9 @@
 import { db } from "../config/db.js";
 import { adminCache } from "../cache/adminCache.js";
+//------------------------------------------------------------------------------
+//API implementation of fuctions for admin removal page
 
+//get all current jobs and vehicles that have been approved and are in the system
 export async function getAllRemovableItems(req, res) {
   try {
     const [vehicles] = await db.query(`
@@ -55,7 +58,9 @@ export async function getAllRemovableItems(req, res) {
     res.status(500).json({ message: "Error loading removal items" });
   }
 }
+//------------------------------------------------------------
 
+//Remove a job or vehicle from the system
 export async function removeItem(req, res) {
   const { id, type, userId } = req.body;
 

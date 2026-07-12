@@ -1,6 +1,8 @@
 import { db } from "../config/db.js";
+//------------------------------------------------------------------------------
+//Implementation of job form submission functions 
 
-// CLIENT SUBMITS A JOB → goes into pending_jobs
+// client submits a job that goes into pending_jobs in the db
 export async function submitJob(req, res) {
   const { clientId, description, duration, deadline } = req.body;
 
@@ -25,8 +27,10 @@ export async function submitJob(req, res) {
     res.status(500).json({ message: "Server error submitting job" });
   }
 }
+//-----------------------------------------------------------
 
 // CLIENT HOME PAGE → fetch approved jobs
+//SEEMS TO BE REDUNDANT. TO BE REMOVED PENDING REVIEW
 export async function getJobsByClient(req, res) {
   const { clientId } = req.params;
 
