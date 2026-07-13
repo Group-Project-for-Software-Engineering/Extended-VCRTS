@@ -1,4 +1,5 @@
 import { db } from "../config/db.js";
+import { createNotification } from "../controllers/notificationController.js";
 import { adminCache } from "../cache/adminCache.js";
 //------------------------------------------------------------------------------
 //API implementation of functions for admin pending page
@@ -59,6 +60,12 @@ export async function approvePending(req, res) {
       );
 
       await db.query("DELETE FROM pending_vehicles WHERE id=?", [id]);
+
+      await createNotification(
+        v.ownerId,
+        "A vehicle request has been approved by an administrator."
+      );
+
     }
 
     if (type === "job") {
@@ -71,8 +78,13 @@ export async function approvePending(req, res) {
       );
 
       await db.query("DELETE FROM pending_jobs WHERE id=?", [id]);
-    }
 
+      await createNotification(
+        j.clientId,
+        "A job request has been approved by an administrator."
+      );
+
+    }
     // Invalidate admin cache
     adminCache.users = null;
 
@@ -91,11 +103,24 @@ export async function rejectPending(req, res) {
 
   try {
     if (type === "vehicle") {
+      const [[v]] = await db.query("SELECT * FROM pending_vehicles WHERE id=?", [id]);
       await db.query("DELETE FROM pending_vehicles WHERE id=?", [id]);
+
+      await createNotification(
+        v.ownerId,
+        "A vehicle request has been rejected by an administrator."
+      );
+
     }
 
     if (type === "job") {
+      const [[j]] = await db.query("SELECT clientId FROM pending_jobs WHERE id=?", [id]);
       await db.query("DELETE FROM pending_jobs WHERE id=?", [id]);
+     
+      await createNotification(
+        j.clientId,
+        "Your job request was rejected by an administrator."
+      );
     }
 
     // Invalidate admin cache

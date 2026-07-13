@@ -1,5 +1,6 @@
 import { db } from "../config/db.js";
 import { adminCache } from "../cache/adminCache.js";
+import { createNotification } from "../controllers/notificationController.js";
 //------------------------------------------------------------------------------
 //API implementation of fuctions for admin removal page
 
@@ -66,18 +67,27 @@ export async function removeItem(req, res) {
 
   try {
     if (type === "vehicle") {
+      const [[v]] = await db.query(
+        "SELECT ownerId FROM vehicles WHERE id = ?",
+        [id]
+      );
       await db.query("DELETE FROM vehicles WHERE id=?", [id]);
-      await db.query(
-        "INSERT INTO notifications (userId, message) VALUES (?, ?)",
-        [userId, "One of your vehicles has been removed by an admin."]
+      
+      await createNotification(
+        v.ownerId,
+        "A vehicle request has been approved by an administrator."
       );
     }
 
     if (type === "job") {
+      const [[j]] = await db.query(
+        "SELECT clientId FROM jobs WHERE id = ?",
+        [id]
+      );
       await db.query("DELETE FROM jobs WHERE id=?", [id]);
       await db.query(
         "INSERT INTO notifications (userId, message) VALUES (?, ?)",
-        [userId, "One of your jobs has been removed by an admin."]
+        [j.clientId, "One of your jobs has been removed by an admin."]
       );
     }
 

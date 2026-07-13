@@ -20,6 +20,15 @@ export async function getNotifications(req, res) {
 }
 //-------------------------------------------------------------
 
+//Make a notification to send back to a user after an accept, reject, or remove by the admin
+export async function createNotification(userId, message) {
+  await db.query(
+    "INSERT INTO notifications (userId, message) VALUES (?, ?)",
+    [userId, message]
+  );
+}
+//-------------------------------------------------------------
+
 //clear notifiations for user
 export async function clearNotifications(req, res) {
   try {
