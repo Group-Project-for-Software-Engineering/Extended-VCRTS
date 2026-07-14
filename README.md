@@ -93,7 +93,9 @@ A real‑time dashboard showing:
   - `vehicles`
   - `jobs`
   - `notifications`
-  - `pending_users`
+  - `pending_jobs`
+  - `pending_vehicles`
+  - `vehicle_heartbeats`
 
 ```
 CREATE TABLE users (
@@ -103,6 +105,7 @@ CREATE TABLE users (
     email VARCHAR(255),
     userType ENUM('Admin', 'Client', 'Owner') NOT NULL
 );
+
 CREATE TABLE vehicles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     ownerId INT NOT NULL,
@@ -116,6 +119,7 @@ CREATE TABLE vehicles (
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (ownerId) REFERENCES users(id)
 );
+
 CREATE TABLE pending_vehicles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     ownerId INT NOT NULL,
@@ -129,6 +133,7 @@ CREATE TABLE pending_vehicles (
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (ownerId) REFERENCES users(id)
 );
+
 CREATE TABLE jobs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     clientId INT NOT NULL,
@@ -140,6 +145,7 @@ CREATE TABLE jobs (
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (clientId) REFERENCES users(id)
 );
+
 CREATE TABLE pending_jobs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     clientId INT NOT NULL,
@@ -149,6 +155,7 @@ CREATE TABLE pending_jobs (
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (clientId) REFERENCES users(id)
 );
+
 CREATE TABLE notifications (
     id INT AUTO_INCREMENT PRIMARY KEY,
     userId INT NOT NULL,
@@ -156,10 +163,6 @@ CREATE TABLE notifications (
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (userId) REFERENCES users(id)
 );
-
-ALTER TABLE jobs
-  ADD COLUMN assignedVehicleId INT NULL,
-  ADD COLUMN status VARCHAR(20) NOT NULL DEFAULT 'pending';
   
 CREATE TABLE vehicle_heartbeats (
   vehicleId INT NOT NULL,
