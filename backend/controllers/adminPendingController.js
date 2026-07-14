@@ -1,5 +1,5 @@
 import { db } from "../config/db.js";
-import { createNotification } from "../controllers/notificationController.js";
+import { createNotification } from "./notificationController.js";
 import { adminCache } from "../cache/adminCache.js";
 //------------------------------------------------------------------------------
 //API implementation of functions for admin pending page

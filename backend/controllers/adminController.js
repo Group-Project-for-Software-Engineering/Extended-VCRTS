@@ -58,7 +58,7 @@ export async function computeCompletionTimes(req, res) {
 
     //Fifo algorithm
     for (let job of jobs) {
-      currentTime += job.duration;
+      currentTime += parseFloat(job.duration.toString().trim());
       results.push({
         jobId: job.id,
         completionTime: `${currentTime} hours`
