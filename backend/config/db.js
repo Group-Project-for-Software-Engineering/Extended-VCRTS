@@ -1,12 +1,15 @@
 import mysql from "mysql2/promise";
+import dotenv from "dotenv";
+dotenv.config();
 //------------------------------------------------------------------------------
 //Connect to the database. At the moment it is a locally hosted database
 
 const pool = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "jc_cus200526",
-  database: "vcrts2"
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
 });
 
 export const db = pool;

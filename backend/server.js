@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
 //------------------------------------------------------------------------------
 //Implementation of the server to run the backend on 
 

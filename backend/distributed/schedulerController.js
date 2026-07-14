@@ -1,12 +1,15 @@
 import mysql from "mysql2/promise";
+import dotenv from "dotenv";
+dotenv.config();
 //------------------------------------------------------------------------------
 //Implementation of functions to automatically take a job in the system and attach it to a vehicle. (for simulations)
 
 const db = await mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "jc_cus200526",
-    database: "vcrts2"
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT
 });
 
 console.log("📡 Scheduler started");
@@ -56,32 +59,32 @@ async function assignJobs() {
 //----------------------------------------------------------------
 
 async function detectFailures() {
-  const [rows] = await db.query(`
+    const [rows] = await db.query(`
     SELECT vehicleId, lastHeartbeat
     FROM vehicle_heartbeats
   `);
 
-  const now = Date.now();
+    const now = Date.now();
 
-  for (let row of rows) {
-    const last = new Date(row.lastHeartbeat).getTime();
-    const diff = now - last;
+    for (let row of rows) {
+        const last = new Date(row.lastHeartbeat).getTime();
+        const diff = now - last;
 
-    if (diff > 5000) { // 5 seconds without heartbeat
-      console.log(`❌ Vehicle ${row.vehicleId} FAILED`);
+        if (diff > 5000) { // 5 seconds without heartbeat
+            console.log(`❌ Vehicle ${row.vehicleId} FAILED`);
 
-      // Reassign jobs from this vehicle
-      await db.query(
-        `UPDATE jobs
+            // Reassign jobs from this vehicle
+            await db.query(
+                `UPDATE jobs
          SET status = 'pending', assignedVehicleId = NULL
          WHERE assignedVehicleId = ? AND status IN ('assigned', 'in_progress')`,
-        [row.vehicleId]
-      );
+                [row.vehicleId]
+            );
+        }
     }
-  }
 }
 
 setInterval(() => {
-  assignJobs();
-  detectFailures();
+    assignJobs();
+    detectFailures();
 }, 3000);
