@@ -95,6 +95,78 @@ A real‑time dashboard showing:
   - `notifications`
   - `pending_users`
 
+```
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255),
+    userType ENUM('Admin', 'Client', 'Owner') NOT NULL
+);
+CREATE TABLE vehicles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ownerId INT NOT NULL,
+    vin VARCHAR(17) NOT NULL UNIQUE,
+    make VARCHAR(100),
+    model VARCHAR(100),
+    plate VARCHAR(20),
+    year INT,
+    arrival DATETIME,
+    departure DATETIME,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (ownerId) REFERENCES users(id)
+);
+CREATE TABLE pending_vehicles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ownerId INT NOT NULL,
+    vin VARCHAR(17) NOT NULL,
+    make VARCHAR(100),
+    model VARCHAR(100),
+    plate VARCHAR(20),
+    year INT,
+    arrival DATETIME,
+    departure DATETIME,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (ownerId) REFERENCES users(id)
+);
+CREATE TABLE jobs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    clientId INT NOT NULL,
+    description VARCHAR(255),
+    assignedVehicleId INT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'pending',
+    duration DECIMAL(10,2),
+    deadline DATETIME,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (clientId) REFERENCES users(id)
+);
+CREATE TABLE pending_jobs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    clientId INT NOT NULL,
+    description VARCHAR(255),
+    duration DECIMAL(10,2),
+    deadline DATETIME,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (clientId) REFERENCES users(id)
+);
+CREATE TABLE notifications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT NOT NULL,
+    message VARCHAR(255) NOT NULL,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (userId) REFERENCES users(id)
+);
+
+ALTER TABLE jobs
+  ADD COLUMN assignedVehicleId INT NULL,
+  ADD COLUMN status VARCHAR(20) NOT NULL DEFAULT 'pending';
+  
+CREATE TABLE vehicle_heartbeats (
+  vehicleId INT NOT NULL,
+  lastHeartbeat TIMESTAMP NOT NULL,
+  PRIMARY KEY (vehicleId)
+);
+```
 ---
 
 ## Project Structure
