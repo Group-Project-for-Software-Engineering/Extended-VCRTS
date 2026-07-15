@@ -171,7 +171,7 @@ CREATE TABLE vehicle_heartbeats (
 ---
 
 ## Project Structure
-
+```
 backend/
 │── cache/              # Implement a cache to prevent bottlenecking with database calls
 │── controllers/        # Request handlers (admin, auth, notifications, etc.)
@@ -187,19 +187,19 @@ frontend/
 │   │── pages/          # Page-level React views
 │   │── styles/         # CSS modules / global styles
 │   │── App.jsx         # Main React application wrapper
-
+```
 ---
 
 ## Environment Variables
 
 Create a `.env` file inside **backend/**:
-
+```
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=yourpassword
 DB_NAME=yourdbname
 PORT=3306
-
+```
 ---
 
 ##  Installation & Setup
