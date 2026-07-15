@@ -224,3 +224,31 @@ npm install
 npm start
 ```
 ---
+## Running the Distributed Simulations
+
+The simulation system is implemented inside the **backend/distributed/** directory.  
+These modules power the real‑time dashboard, vehicle node behavior, job execution flow, and heartbeat‑based failure detection.
+
+### 1. Start the Vehicle Nodes
+Once the backend and frontend are running, make a new terminal and do the following:
+
+```
+cd backend/distributed
+node vehicleNode.js --vehicleId=INSERTIDHERE
+```
+You can insert the id of any vehicle in the system. This is the unique vehicle id which an admin can see on the home page, or can be seen in the database itself. You can activate as many vehicles as you want, but for good performance 2-3 is recommended.
+
+
+### 2. Start the Job Scheduler
+Once the vehicles are activated, activate the job scheduler which will assign jobs to activated vehicles
+
+```
+cd backend/distributed
+node scheduler.js
+```
+
+### 3. Open the Admin Dashboard
+
+You can log in as an admin and go to the dashboard tab for live updates on simulation progression
+
+---
