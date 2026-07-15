@@ -29,8 +29,6 @@ Owners can:
 
 - Add vehicles
 - View all vehicles
-- See real‑time heartbeat status (Alive / Dead)
-- Track last heartbeat timestamp
 - View jobs assigned to each vehicle
 
 ---
@@ -41,18 +39,18 @@ Clients can:
 - Submit job requests
 - View job status (Pending, Assigned, Completed)
 - See assigned vehicle (if any)
-- Receive notifications when job status changes
 
 ---
 
 ## Notifications System
-All user types receive notifications when:
 
-- A job is created
-- A job is assigned
-- A job is completed
-- A vehicle heartbeat fails
-- Admin approves or removes a user
+Admin notifications for:
+- A job is submitted and pending approval
+- A vehicle is submitted and pending approval
+
+Client/Owner notifications for:
+- A job/vehicle is accept/rejected by an admin
+- A job/vehicle is removed from the system
 
 Notifications are stored in MySQL and fetched via API calls
 
@@ -173,18 +171,22 @@ CREATE TABLE vehicle_heartbeats (
 ---
 
 ## Project Structure
-backend/
-controllers/
-routes/
-config/
-server.js
 
+backend/
+│── cache/              # Implement a cache to prevent bottlenecking with database calls
+│── controllers/        # Request handlers (admin, auth, notifications, etc.)
+│── routes/             # API route definitions
+│── distributed/        # Implementation of dashboard functions for application simulations
+│── models/             # Format for users, vehicles, and job "objects"
+│── config/             # Database configuration, environment setup
+│── server.js           # Express server entry point
+│
 frontend/
-src/
-components/
-pages/
-styles/
-App.jsx
+│── src/
+│   │── components/     # Reusable UI components
+│   │── pages/          # Page-level React views
+│   │── styles/         # CSS modules / global styles
+│   │── App.jsx         # Main React application wrapper
 
 ---
 
@@ -196,8 +198,7 @@ DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=yourpassword
 DB_NAME=yourdbname
-PORT=5000
-
+PORT=3306
 
 ---
 
