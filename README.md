@@ -22,6 +22,7 @@ The system supports three user types:
   - Views job status
   - Receives notifications
 
+**Note: There is no way to register an admin account into the system. An admin account must be manually entered into the database for security purposes.**
 ---
 
 ## Vehicle Management (Owner)
