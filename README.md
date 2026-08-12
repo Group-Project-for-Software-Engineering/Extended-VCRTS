@@ -22,6 +22,7 @@ The system supports three user types:
   - Views job status
   - Receives notifications
 
+**Note: There is no way to register an admin account into the system. An admin account must be manually entered into the database for security purposes.**
 ---
 
 ## Vehicle Management (Owner)
@@ -29,8 +30,6 @@ Owners can:
 
 - Add vehicles
 - View all vehicles
-- See real‑time heartbeat status (Alive / Dead)
-- Track last heartbeat timestamp
 - View jobs assigned to each vehicle
 
 ---
@@ -41,18 +40,18 @@ Clients can:
 - Submit job requests
 - View job status (Pending, Assigned, Completed)
 - See assigned vehicle (if any)
-- Receive notifications when job status changes
 
 ---
 
 ## Notifications System
-All user types receive notifications when:
 
-- A job is created
-- A job is assigned
-- A job is completed
-- A vehicle heartbeat fails
-- Admin approves or removes a user
+Admin notifications for:
+- A job is submitted and pending approval
+- A vehicle is submitted and pending approval
+
+Client/Owner notifications for:
+- A job/vehicle is accept/rejected by an admin
+- A job/vehicle is removed from the system
 
 Notifications are stored in MySQL and fetched via API calls
 
@@ -173,32 +172,35 @@ CREATE TABLE vehicle_heartbeats (
 ---
 
 ## Project Structure
+```
 backend/
-controllers/
-routes/
-config/
-server.js
-
+│── cache/              # Implement a cache to prevent bottlenecking with database calls
+│── controllers/        # Request handlers (admin, auth, notifications, etc.)
+│── routes/             # API route definitions
+│── distributed/        # Implementation of dashboard functions for application simulations
+│── models/             # Format for users, vehicles, and job "objects"
+│── config/             # Database configuration, environment setup
+│── server.js           # Express server entry point
+│
 frontend/
-src/
-components/
-pages/
-styles/
-App.jsx
-
+│── src/
+│   │── components/     # Reusable UI components
+│   │── pages/          # Page-level React views
+│   │── styles/         # CSS modules / global styles
+│   │── App.jsx         # Main React application wrapper
+```
 ---
 
 ## Environment Variables
 
 Create a `.env` file inside **backend/**:
-
+```
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=yourpassword
 DB_NAME=yourdbname
-PORT=5000
-
-
+PORT=3306
+```
 ---
 
 ##  Installation & Setup
@@ -222,4 +224,32 @@ cd frontend
 npm install
 npm start
 ```
+---
+## Running the Distributed Simulations
+
+The simulation system is implemented inside the **backend/distributed/** directory.  
+These modules power the real‑time dashboard, vehicle node behavior, job execution flow, and heartbeat‑based failure detection.
+
+### 1. Start the Vehicle Nodes
+Once the backend and frontend are running, make a new terminal and do the following:
+
+```
+cd backend/distributed
+node vehicleNode.js --vehicleId=INSERTIDHERE
+```
+You can insert the id of any vehicle in the system. This is the unique vehicle id which an admin can see on the home page, or can be seen in the database itself. You can activate as many vehicles as you want, but for good performance 2-3 is recommended.
+
+
+### 2. Start the Job Scheduler
+Once the vehicles are activated, activate the job scheduler which will assign jobs to activated vehicles
+
+```
+cd backend/distributed
+node scheduler.js
+```
+
+### 3. Open the Admin Dashboard
+
+You can log in as an admin and go to the dashboard tab for live updates on simulation progression
+
 ---
