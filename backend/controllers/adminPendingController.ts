@@ -117,12 +117,12 @@ export async function rejectPending(req: Request, res: Response) {
     }
 
     if (type === "job") {
-      const [[j]] = await db.query<Job[]>("SELECT clientId FROM pending_jobs WHERE id=?", [id]);
+      const [[j]] = await db.query<Job[]>("SELECT * FROM pending_jobs WHERE id=?", [id]);
       await db.query("DELETE FROM pending_jobs WHERE id=?", [id]);
      
       await createNotification(
         j.clientId,
-        "Your job request was rejected by an administrator."
+        "A job request was rejected by an administrator."
       );
     }
 

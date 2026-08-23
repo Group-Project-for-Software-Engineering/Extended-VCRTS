@@ -223,3 +223,114 @@ describe("approvePending", () => {
   });
 
 });
+
+//----------------------------------------------
+
+//test reject pending function
+
+describe("reject pending", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    adminCache.users = [{} as any];
+  });
+
+  it("rejects a pending vehicle request", async () => {
+    
+    const req = {
+      body: { id: 5001, type: "vehicle" }
+    } as any;
+
+    const res = createMockResponse();
+
+    const pendingVehicle = [
+      [
+        {
+          id: 5001,
+          ownerId: 2,
+          vin: "1HGCM82633A004352",
+          make: "Toyota",
+          model: "Camry",
+          plate: "NYC-4821",
+          year: 2020,
+          arrival: "2026-09-12T09:00:00Z",
+          departure: "2026-09-12T17:00:00Z"
+        }
+      ]
+    ];
+
+    // Mock DB calls
+    (db.query as any)
+      .mockResolvedValueOnce(pendingVehicle) // SELECT pending vehicle
+      .mockResolvedValueOnce([]);           // DELETE from pending_vehicles
+
+    await rejectPending(req as any, res as any);
+
+    expect(db.query).toHaveBeenCalledTimes(2);
+
+    // Notification sent
+    expect(createNotification).toHaveBeenCalledWith(
+      2,
+      "A vehicle request has been rejected by an administrator."
+    );
+
+    // Cache invalidated
+    expect(adminCache.users).toBeNull();
+
+    expect(res.json).toHaveBeenCalledWith({ message: "Rejected" });
+  })
+
+  it("rejects a pending job request", async () => {
+    const req = {
+      body: { id: 1001, type: "job" }
+    } as any;
+
+    const res = createMockResponse();
+
+    const pendingJob = [
+      [
+        {
+          id: 1001,
+          clientId: 1,
+          description: "Compute simulation workload",
+          duration: 3,
+          deadline: "2026-09-15T17:00:00Z",
+          timestamp: "2026-09-10T12:30:00Z",
+          assignedVehicleId: null,
+          status: "pending"
+        }
+      ]
+    ];
+
+    (db.query as any)
+      .mockResolvedValueOnce(pendingJob) // SELECT pending job
+      .mockResolvedValueOnce([]);        // DELETE from pending_jobs
+
+    await rejectPending(req as any, res as any);
+
+    expect(db.query).toHaveBeenCalledTimes(2);
+
+    expect(createNotification).toHaveBeenCalledWith(
+      1,
+      "A job request was rejected by an administrator."
+    );
+
+    expect(adminCache.users).toBeNull();
+
+    expect(res.json).toHaveBeenCalledWith({ message: "Rejected" });
+  });
+
+   it("returns 500 when DB fails", async () => {
+    const req = { body: { id: 999, type: "vehicle" } } as any;
+    const res = createMockResponse();
+
+    (db.query as any).mockRejectedValue(new Error("DB failure"));
+
+    await rejectPending(req as any, res as any);
+
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Error rejecting request"
+    });
+  });
+
+})
