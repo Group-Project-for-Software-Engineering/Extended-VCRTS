@@ -8,7 +8,7 @@ import { Job } from "../models/Job";
 //API implementation of fuctions for admin removal page
 
 //get all current jobs and vehicles that have been approved and are in the system
-export async function getAllRemovableItems(res: Response) {
+export async function getAllRemovableItems(req: Request, res: Response) {
   try {
     const [vehicles] = await db.query<Vehicle[]>(`
       SELECT id, ownerId AS userId, vin, make, model, plate, year, arrival, departure,

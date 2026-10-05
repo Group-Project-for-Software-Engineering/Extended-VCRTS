@@ -8,7 +8,7 @@ import { Job } from "../models/Job";
 //API implementation of functions for admin pending page
 
 //get all pending requests from the database
-export async function getPendingRequests(res: Response) {
+export async function getPendingRequests(req: Request, res: Response) {
   try {
     const [vehicles] = await db.query<Vehicle[]>("SELECT *, 'vehicle' AS type FROM pending_vehicles");
     const [jobs] = await db.query<Job[]>("SELECT *, 'job' AS type FROM pending_jobs");

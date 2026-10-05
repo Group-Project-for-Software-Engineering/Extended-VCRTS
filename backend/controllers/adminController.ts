@@ -1,6 +1,6 @@
 import { db } from "../config/db";
 import { adminCache } from "../cache/adminCache";
-import { Response } from "express";
+import { Request, Response } from "express";
 import { User } from "../models/User"
 import { Vehicle } from "../models/Vehicle"
 import { Job } from "../models/Job"
@@ -8,7 +8,7 @@ import { Job } from "../models/Job"
 //Api function implementation for admin home page
 
 //Get all users in the system
-export async function getAllUsers(res: Response) {
+export async function getAllUsers(req: Request,res: Response) {
 
   //check cache first before querying database
   try {
@@ -51,7 +51,7 @@ export async function getAllUsers(res: Response) {
 
 //Api call implementation of admin home page completion time button
 //Current implementation of completion time uses FIFO algorithm
-export async function computeCompletionTimes(res: Response) {
+export async function computeCompletionTimes(req: Request, res: Response) {
   try {
     const [jobs] = await db.query<Job[]>(
       "SELECT id, duration FROM jobs ORDER BY timestamp ASC"

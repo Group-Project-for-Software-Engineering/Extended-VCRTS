@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { db } from "../config/db";
+import {db} from "../config/db";
 import { Request, Response } from "express"
 import { User } from "../models/User"
 //------------------------------------------------------------------------------
